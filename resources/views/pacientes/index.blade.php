@@ -15,9 +15,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between w-100">
-                        <span>@lang('(CRUD Laravel)')</span>
+                        <span>@lang('(Listagem Pacientes)')</span>
                         <a href="{{ url('pacientes/create') }}" class="btn-primary btn-sm">
-                            <i class="fa fa-plus"></i> @lang('Criar Novo')
+                            <i class="fa fa-plus"></i> @lang('Novo Paciente')
                         </a>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     </div>
                     @endif
 
-                    <table class="table table-bordered">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <td>ID</td>
@@ -57,10 +57,10 @@
                                     <form action="{{ route('pacientes.destroy', $paciente->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                        <button class="btn btn-danger btn-sm" type="submit">Excluir</button>
                                     </form>
                                 </td>
-                            </tr>
+                            </tr>   
                             @endforeach
                         </tbody>
                     </table>
