@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Paciente;
 
 class PacienteController extends Controller
 {
@@ -16,7 +17,7 @@ class PacienteController extends Controller
         //obtendo os dados dos pacientes 
         $pacientes = Paciente::all();
         //chamandi a tela e enviando o objeto  $pacientes como parâmetro
-        return view('pacientes.index', compact($pacientes));
+        return view('pacientes.index', compact('pacientes'));
     }
 
     /**
@@ -41,7 +42,7 @@ class PacienteController extends Controller
         // ciando regras para validação
         $validateData = $request->validate([
             'nome'   =>   'required|max:35',
-            'genero' =>   'required'
+            'genero' =>   'required|max:35'
         ]);
         //executando o método para a gravação do registro
         $paciente = Paciente::create($validadeData);
