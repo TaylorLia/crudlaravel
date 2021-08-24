@@ -45,7 +45,7 @@ class PacienteController extends Controller
             'genero' =>   'required|max:35'
         ]);
         //executando o método para a gravação do registro
-        $paciente = Paciente::create($validadeData);
+        $paciente = Paciente::create($validateData);
         //redirecionando para a tela principal do model de pacientes 
         return redirect('/pacientes')->with('success',"Dados adicionados com sucesso!");    
     }
