@@ -5,9 +5,9 @@
 @push('css')
 <style>
 table{
-font-family: Verdana,sans-serif;
-border: 1px solid #ccc;
-margin: 20px 0;
+    font-family: Verdana,sans-serif;
+    border: 1px solid #ccc;
+    margin: 20px 0;
 }
 table th{
     padding:10px;
