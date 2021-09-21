@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('i');
+    return view('welcome');
 });
 
 Route::resource('pacientes', 'PacienteController');
+
+Route::resource('medicos','MedicoController');
+
+Route::resource('consultas','ConsultaController');
