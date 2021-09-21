@@ -35,6 +35,7 @@ class ConsultaController extends Controller
         // obtendo todos os médicos
         $medicos = Medico::pluck('nome','id');
         // chamando a tela para o cadastro de pacientes
+        //dd($medicos);
         return view ('consultas.create', compact('pacientes','medicos'));
     }
 
@@ -85,11 +86,13 @@ class ConsultaController extends Controller
     public function edit($id)
     {
         // criando um objeto para receber o resultado
+        $paciente = Paciente::pluck('nome','id');
+        $paciente = Medico::pluck('nome','id');
         // da busca de registro/objeto específico
         $consulta = Consulta::findOrFail($id);
         // retornando a tela de edição com o
         // objeto recuperado
-        return view('consultas.edit', compact('consulta'));
+        return view('consultas.edit', compact('consulta','pacientes','medicos'));
     }
 
     /**
