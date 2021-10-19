@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Medico;
+use Illuminate\Http\Request;
 
 class MedicoController extends Controller
 {
@@ -14,7 +14,7 @@ class MedicoController extends Controller
      */
     public function index()
     {
-        // obtendo os dados de todos os Medicos
+        // obtendo os dados de todos os medicos
         $medicos = Medico::all();
         // chamando a tela e enviando o objeto $medicos
         // como parâmetro
@@ -28,7 +28,7 @@ class MedicoController extends Controller
      */
     public function create()
     {
-        // chamando a tela para o cadastro de Medicos
+        // chamando a tela para o cadastro de medicos
         return view ('medicos.create');
     }
 
@@ -43,19 +43,19 @@ class MedicoController extends Controller
         // criando regras para validação
         $validateData = $request->validate([
             'nome'      =>      'required|max:35',
-            'crm'    =>      'required|max:35'
+            'crm'       =>      'required|max:35'
         ]);
         // executando o método para a gravação do registro
         $medico = Medico::create($validateData);
         // redirecionando para a tela principal do módulo
-        // de Medicos
+        // de medicos
         return redirect('/medicos')->with('success','Dados adicionados com sucesso!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Medico  $medico
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -71,7 +71,7 @@ class MedicoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Medico  $medico
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -88,7 +88,7 @@ class MedicoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Medico  $medico
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -97,7 +97,7 @@ class MedicoController extends Controller
         // validações nos dados da requisição
         $validateData = $request->validate([
             'nome'      =>      'required|max:35',
-            'crm'    =>      'required|max:35'
+            'crm'       =>      'required|max:35'
         ]);
         // criando um objeto para receber o resultado
         // da persistência (atualização) dos dados validados 
@@ -110,7 +110,7 @@ class MedicoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Medico  $medico
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

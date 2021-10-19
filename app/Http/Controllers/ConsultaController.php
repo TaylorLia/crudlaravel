@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Consulta;
-use App\Paciente;
 use App\Medico;
+use App\Paciente;
 
 class ConsultaController extends Controller
 {
@@ -16,7 +16,7 @@ class ConsultaController extends Controller
      */
     public function index()
     {
-        // obtendo os dados de todos os pacientes
+        // obtendo os dados de todos as consultas
         $consultas = Consulta::all();
         // chamando a tela e enviando o objeto $consultas
         // como parâmetro
@@ -30,12 +30,11 @@ class ConsultaController extends Controller
      */
     public function create()
     {
-        // obtendo todos os pacientes
+        //obtendo todos os pacientes
         $pacientes = Paciente::pluck('nome','id');
-        // obtendo todos os médicos
+        //obtendo todos os medicos
         $medicos = Medico::pluck('nome','id');
-        // chamando a tela para o cadastro de pacientes
-        //dd($medicos);
+        // chamando a tela para o cadastro de consultas
         return view ('consultas.create', compact('pacientes','medicos'));
     }
 
@@ -50,21 +49,21 @@ class ConsultaController extends Controller
         // criando regras para validação
         $validateData = $request->validate([
             'paciente_id'      =>      'required|max:35',
-            'medico_id'      =>      'required|max:35',
-            'data'    =>      'required|max:35',
-            'hora'    =>      'required|max:35'
+            'medico_id'        =>      'required|max:35',
+            'data'             =>      'required|max:35',
+            'hora'             =>      'required|max:35'
         ]);
         // executando o método para a gravação do registro
         $consulta = Consulta::create($validateData);
         // redirecionando para a tela principal do módulo
-        // de pacientes
+        // de consultas
         return redirect('/consultas')->with('success','Dados adicionados com sucesso!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Consulta  $consulta
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -80,26 +79,24 @@ class ConsultaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Consulta  $consulta
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         // criando um objeto para receber o resultado
-        $paciente = Paciente::pluck('nome','id');
-        $paciente = Medico::pluck('nome','id');
         // da busca de registro/objeto específico
         $consulta = Consulta::findOrFail($id);
         // retornando a tela de edição com o
         // objeto recuperado
-        return view('consultas.edit', compact('consulta','pacientes','medicos'));
+        return view('consultas.edit', compact('consulta'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Consulta  $consulta
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -108,9 +105,9 @@ class ConsultaController extends Controller
         // validações nos dados da requisição
         $validateData = $request->validate([
             'paciente_id'      =>      'required|max:35',
-            'medico_id'      =>      'required|max:35',
-            'data'    =>      'required|max:35',
-            'hora'    =>      'required|max:35'
+            'medico_id'        =>      'required|max:35',
+            'data'             =>      'required|max:35',
+            'hora'             =>      'required|max:35'
         ]);
         // criando um objeto para receber o resultado
         // da persistência (atualização) dos dados validados 
@@ -123,7 +120,7 @@ class ConsultaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Consulta  $consulta
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
