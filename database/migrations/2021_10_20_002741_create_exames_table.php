@@ -15,6 +15,16 @@ class CreateExamesTable extends Migration
     {
         Schema::create('exames', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('paciente_id')
+                ->constrained('pacientes');
+            $table->foreignId('convenio_id')
+                ->constrained('convenios');
+            $table->foreignId('tipoexame_id')
+                ->constrained('tipo_exames');
+            $table->foreignId('funcionario_id')
+                ->constrained('funcionarios');
+            $table->double('valor_exame', 10, 2);
+            $table->date('data_exame');
             $table->timestamps();
         });
     }
